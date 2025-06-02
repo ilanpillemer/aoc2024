@@ -3,7 +3,8 @@ use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
 
-// correct day 1 answer is 1660292
+// https://adventofcode.com/2024/day/1
+// correct day 1 part 1 answer is 1660292 for my input
 
 fn main() -> io::Result<()> {
     let f = File::open("input")?;
@@ -13,24 +14,22 @@ fn main() -> io::Result<()> {
     for line in f.lines() {
         let line = line?;
         let mut xs = line.split_whitespace();
-        let left = xs.next().expect("");
-        let right = xs.next().expect("");
-        let left: i32 = left.trim().parse().expect("");
-        let right: i32 = right.trim().parse().expect("");
+        let left: i32 = xs.next().expect("").trim().parse().expect("");
+        let right: i32 = xs.next().expect("").trim().parse().expect("");
         v.push(left);
         w.push(right);
     }
 
     v.sort();
     w.sort();
-    let z = v.iter().zip(w);
 
+    let z = v.iter().zip(w);
     let mut total = 0;
     for x in z {
         let (a, b) = x;
         total += (a - b).abs()
     }
-    println!("{}", total);
 
+    println!("Day 1, Part 1: {total}");
     Ok(())
 }
