@@ -5,7 +5,7 @@ use std::io::prelude::*;
 use std::io::BufReader;
 // https://adventofcode.com/2024/day/1
 
-fn main() -> io::Result<()> {
+fn main() -> Result<(), io::Error> {
     let f = File::open("input")?;
     let f = BufReader::new(f);
     let mut v = Vec::new();
@@ -14,8 +14,8 @@ fn main() -> io::Result<()> {
     for line in f.lines() {
         let line = line?;
         let mut xs = line.split_whitespace();
-        let left: i32 = xs.next().expect("").trim().parse().expect("");
-        let right: i32 = xs.next().expect("").trim().parse().expect("");
+        let left: i32 = xs.next().unwrap().trim().parse().unwrap();
+        let right: i32 = xs.next().unwrap().trim().parse().unwrap();
         v.push(left);
         w.push(right);
 
@@ -29,7 +29,7 @@ fn main() -> io::Result<()> {
     w.sort();
 
     let total: i32 = v.iter().zip(w).map(|(a, b)| (a - b).abs()).sum();
-    let score: i32 = v.iter().map(|x| x * counts.get(x).expect("")).sum();
+    let score: i32 = v.iter().map(|x| x * counts.get(x).unwrap()).sum();
 
     assert_eq!(total, 1660292); // only true for my input
     println!("Day 1, Part 1: {total}");
