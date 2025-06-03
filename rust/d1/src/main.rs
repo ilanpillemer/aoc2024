@@ -23,13 +23,9 @@ fn main() -> io::Result<()> {
     v.sort();
     w.sort();
 
-    let z = v.iter().zip(w);
-    let mut total = 0;
-    for x in z {
-        let (a, b) = x;
-        total += (a - b).abs()
-    }
+    let total: i32 = v.iter().zip(w).map(|(a, b)| (a - b).abs()).sum();
 
+    assert_eq!(total, 1660292); // only true for my input
     println!("Day 1, Part 1: {total}");
     Ok(())
 }
