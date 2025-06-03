@@ -4,7 +4,6 @@ use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
 // https://adventofcode.com/2024/day/1
-// correct day 1 part 1 answer is 1660292 for my input
 
 fn main() -> io::Result<()> {
     let f = File::open("input")?;
